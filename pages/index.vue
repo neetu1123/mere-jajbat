@@ -2,6 +2,11 @@
     <div class="shayari-page container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold text-center mb-8">Shayari Collection</h1>
 
+        <!-- Music Player Component -->
+        <div class="mb-8">
+            <MusicPlayer />
+        </div>
+
         <!-- Filtering options -->
         <div class="flex flex-wrap gap-4 mb-6">
             <div class="flex-1 min-w-[250px]">
@@ -96,6 +101,7 @@
 </template>
 
 <script setup lang="ts">
+import MusicPlayer from '~/components/MusicPlayer.vue'
 
 // Get composable methods and data
 const { apiUrls, deleteShayari } = useShayariApi()
@@ -197,6 +203,13 @@ const deleteCurrentShayari = async (id: string) => {
         }
     }
 }
+
+// Initial data fetch
+onMounted(() => {
+    refreshData()
+})
+
+// Music player is now handled by the MusicPlayer component
 
 // Initial data fetch
 onMounted(() => {
