@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mere Jazbaat – Shayari Diary</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+    
+    :root {
+      --primary-light: #ec4899;
+      --primary-dark: #be185d;
+      --secondary-light: #8b5cf6;
+      --secondary-dark: #6d28d9;
+      --accent-light: #f472b6;
+      --accent-dark: #db2777;
+      --background-light: #f5f7fa;
+      --background-dark: #141e30;
+      --text-light: #334155;
+      --text-dark: #f8fafc;
+      --card-light: rgba(255, 255, 255, 0.8);
+      --card-dark: rgba(30, 41, 59, 0.8);
+      --transition-speed: 0.4s;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-image: linear-gradient(135deg, var(--background-light) 0%, #c3cfe2 100%);
+      background-size: 200% 200%;
+      min-height: 100vh;
+      transition: all var(--transition-speed) ease;
+      overflow-x: hidden;
+      animation: gradientBackground 15s ease infinite;
+    }
+    
+    @keyframes gradientBackground {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
+    
+    .dark-mode {
+      background-image: linear-gradient(135deg, var(--background-dark) 0%, #243b55 100%);
+      color: var(--text-dark);
+    }
+    
+    .shayari-text {
+      font-family: 'Kalam', cursive;
+      line-height: 1.8;
+    }
+    
+    .shayari-card {
+      transition: all var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-origin: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .shayari-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-effect {
+      transition: all var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-effect:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: width 0.4s ease;
+    }
+    
+    .btn-effect:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-effect:hover:before {
+      width: 100%;
+    }
+    
+    .btn-effect:active {
+      transform: translateY(-1px);
+    }
+    
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .floating-music-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-speed) cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      transform-origin: bottom right;
+    }
+    
+    .floating-music-controls.hidden {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    
+    .theme-selector {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+    
+    .input-focus {
+      transition: all var(--transition-speed) ease;
+    }
+    
+    .input-focus:focus {
+      transform: scale(1.02);
+      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.3);
+    }
+    
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(219, 39, 119, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(219, 39, 119, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(219, 39, 119, 0); }
+    }
+    
+    .entry-animation {
+      opacity: 0;
+      animation: fadeInUp 0.7s ease forwards;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .shimmer {
+      background: linear-gradient(90deg, 
+                  rgba(255,255,255,0) 0%, 
+                  rgba(255,255,255,0.2) 50%, 
+                  rgba(255,255,255,0) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    .author-tag {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .author-tag:hover {
+      transform: translateY(-3px);
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .card-flip {
+      perspective: 1000px;
+    }
+    
+    .card-flip:hover .card-inner {
+      transform: rotateY(10deg);
+    }
+    
+    .card-inner {
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    
+    /* Additional animations */
+    .btn-hover-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-hover-effect:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transition: 0.5s;
+    }
+    
+    .btn-hover-effect:hover:after {
+      left: 100%;
+    }
+    
+    /* Animated background for mood-specific themes */
+    .mood-bg-happy { background: linear-gradient(120deg, #f6d365 0%, #fda085 100%); }
+    .mood-bg-sad { background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%); }
+    .mood-bg-love { background: linear-gradient(120deg, #ff9a9e 0%, #fad0c4 100%); }
+    .mood-bg-inspiration { background: linear-gradient(120deg, #a18cd1 0%, #fbc2eb 100%); }
+    .mood-bg-nature { background: linear-gradient(120deg, #96fbc4 0%, #f9f586 100%); }
+    .mood-bg-nostalgia { background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%); }
+  </style>
+</head>
+<body class="p-0 m-0">
+  <!-- Background particles -->
+  <div class="bg-particles" id="particles-js"></div>
+  
+  <!-- Theme toggler -->
+  <div class="theme-selector">
+    <button id="themeToggle" class="p-2 rounded-full bg-white/30 backdrop-blur-sm shadow-lg transition-all duration-300 hover:bg-white/50">
+      <i id="themeIcon" class="fas fa-moon text-gray-800"></i>
+    </button>
+  </div>
+
+  <!-- Top navigation bar -->
+  <nav class="fixed top-0 left-0 right-0 z-40 glass-effect backdrop-blur-xl bg-white/10 dark:bg-gray-900/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <img src="https://img.icons8.com/fluency/96/null/feather.png" alt="Feather" class="h-8 w-8 mr-2 animate__animated animate__pulse animate__infinite animate__slow" />
+          <h2 class="text-xl font-bold text-pink-700 dark:text-pink-400">Mere Jazbaat</h2>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="settingsBtn" class="p-2 rounded-full bg-white/20 backdrop-blur-sm shadow hover:bg-white/30 transition-all duration-300">
+            <i class="fas fa-cog text-gray-700 dark:text-gray-300"></i>
+          </button>
+          <button id="themeToggle" class="p-2 rounded-full bg-white/20 backdrop-blur-sm shadow hover:bg-white/30 transition-all duration-300">
+            <i id="themeIcon" class="fas fa-moon text-gray-700 dark:text-gray-300"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content container with increased max width -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-24">
+    <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl p-8 shadow-xl animate__animated animate__fadeIn border border-pink-100 dark:border-pink-900/30">
+      <header class="text-center mb-10">
+        <div class="inline-block relative">
+          <span class="absolute -top-6 -left-6 text-5xl animate__animated animate__heartBeat animate__infinite animate__slower">💭</span>
+          <h1 class="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500 dark:from-pink-400 dark:to-rose-400 mb-2">
+            Mere Jazbaat
+          </h1>
+          <p class="text-lg text-gray-600 dark:text-gray-300 italic">- A Modern Shayari Diary -</p>
+        </div>
+      </header>
+      
+      <div class="mb-8 transition-all duration-300 hover:transform hover:scale-[1.01]">
+        <div class="relative rounded-2xl overflow-hidden shadow-lg border border-pink-100 dark:border-gray-700">
+          <div class="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-500/10 dark:from-pink-500/20 dark:to-purple-500/20"></div>
+          <textarea 
+            id="shayariInput" 
+            rows="4" 
+            placeholder="Apni Shayari likhiye... ✨" 
+            class="shayari-text input-focus w-full p-6 border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md text-gray-800 dark:text-white focus:outline-none transition-all duration-300 text-xl z-10 relative"
+          ></textarea>
+          
+          <div class="flex flex-wrap items-center gap-3 p-4 bg-white/90 dark:bg-gray-800/90 border-t border-pink-100 dark:border-gray-700">
+            <div class="flex flex-1 items-center gap-2">
+              <div class="relative group">
+                <label class="text-pink-700 dark:text-pink-400 font-medium flex items-center gap-1">
+                  <i class="fas fa-palette"></i> मूड:
+                </label>
+                <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300 group-hover:w-full"></div>
+              </div>
+              <select id="moodSelect" class="border border-pink-300 dark:border-pink-500 rounded-lg p-3 bg-white/60 dark:bg-gray-700/60 text-gray-800 dark:text-white backdrop-blur-sm flex-1">
+                <option value="happy">😊 Happy</option>
+                <option value="sad">💔 Sad</option>
+                <option value="love">❤️ Love</option>
+                <option value="inspiration">✨ Inspiration</option>
+                <option value="nature">🌿 Nature</option>
+                <option value="nostalgia">🕰️ Nostalgia</option>
+              </select>
+            </div>
+            
+            <!-- Author input field -->
+            <div class="flex flex-1 items-center gap-2">
+              <div class="relative group">
+                <label class="text-pink-700 dark:text-pink-400 font-medium flex items-center gap-1">
+                  <i class="fas fa-feather-alt"></i> लेखक:
+                </label>
+                <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300 group-hover:w-full"></div>
+              </div>
+              <input 
+                type="text" 
+                id="authorInput" 
+                placeholder="आपका नाम..." 
+                class="border border-pink-300 dark:border-pink-500 rounded-lg p-3 bg-white/60 dark:bg-gray-700/60 text-gray-800 dark:text-white backdrop-blur-sm flex-1"
+              >
+            </div>
+
+            <!-- Image upload for shayari -->
+            <div class="flex-1 flex items-center gap-2">
+              <div class="relative group">
+                <label for="imageUpload" class="text-pink-700 dark:text-pink-400 font-medium flex items-center gap-1 cursor-pointer">
+                  <i class="fas fa-image"></i> छवि:
+                </label>
+                <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-500 transition-all duration-300 group-hover:w-full"></div>
+              </div>
+              <input 
+                type="file" 
+                id="imageUpload" 
+                accept=".jpg,.jpeg,.png,.webp" 
+                class="hidden"
+              >
+              <button id="imageUploadButton" class="border border-pink-300 dark:border-pink-500 rounded-lg p-3 bg-white/60 dark:bg-gray-700/60 text-gray-800 dark:text-white backdrop-blur-sm flex-1 text-center">
+                <i class="fas fa-camera mr-1"></i> Upload Image
+              </button>
+              <div id="imagePreviewContainer" class="hidden w-12 h-12 rounded-lg overflow-hidden border border-pink-300 dark:border-pink-500">
+                <img id="imagePreview" class="w-full h-full object-cover">
+              </div>
+            </div>
+            
+            <div id="characterCount" class="text-sm text-gray-500 dark:text-gray-400 px-2"></div>
+          </div>
+        </div>
+        
+        <!-- File Upload options -->
+        <div class="mt-4 flex flex-col sm:flex-row gap-4 items-center">
+          <div class="flex gap-2 items-center">
+            <button id="uploadTextFileBtn" class="btn-effect px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 flex items-center gap-2">
+              <i class="fas fa-file-alt"></i>
+              <span>Upload Text File</span>
+            </button>
+            <input type="file" id="textFileUpload" accept=".txt" class="hidden">
+          </div>
+          
+          <div class="flex gap-2 items-center">
+            <button id="uploadExcelFileBtn" class="btn-effect px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 flex items-center gap-2">
+              <i class="fas fa-file-excel"></i>
+              <span>Upload Excel File</span>
+            </button>
+            <input type="file" id="excelFileUpload" accept=".xlsx" class="hidden">
+          </div>
+
+          <div class="flex-grow"></div>
+          
+          <button 
+            onclick="addShayari()" 
+            class="btn-hover-effect btn-effect bg-gradient-to-r from-pink-500 to-rose-500 dark:from-pink-600 dark:to-rose-600 text-white px-6 py-3 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-pink-400 flex items-center justify-center gap-2 shadow-lg"
+          >
+            <i class="fas fa-heart"></i>
+            <span>Add Shayari</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="mb-6 p-4 bg-pink-50 dark:bg-gray-700/40 rounded-xl">
+        <div class="flex flex-col sm:flex-row justify-between gap-4">
+          <div class="w-full sm:w-1/2">
+            <label class="block text-pink-700 dark:text-pink-400 font-medium mb-2">
+              <i class="fas fa-music mr-2"></i>Choose Your Music
+            </label>
+            <select id="musicSelect" class="border border-pink-300 dark:border-pink-500 rounded-lg p-3 w-full bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm text-gray-800 dark:text-white" onchange="changeMusic()">
+              <option value="happy.mp3">Happy Vibes</option>
+              <option value="sad.mp3">Sad Soul</option>
+              <option value="love.mp3">Romantic Strings</option>
+              <option value="inspiration.mp3">Inspiring Melody</option>
+              <option value="nature.mp3">Nature Sounds</option>
+              <option value="nostalgia.mp3">Nostalgic Tunes</option>
+            </select>
+          </div>
+          
+          <div class="w-full sm:w-1/2">
+            <label class="block text-pink-700 dark:text-pink-400 font-medium mb-2">
+              <i class="fas fa-upload mr-2"></i>Or Upload Your Own Song
+            </label>
+            <input type="file" id="audioUpload" accept="audio/*" class="w-full border border-pink-300 dark:border-pink-500 rounded-lg p-3 bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm text-gray-800 dark:text-white" onchange="uploadCustomAudio(event)"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced filter and search -->
+      <div class="relative p-6 border border-pink-100 dark:border-gray-700/50 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl shadow-sm mb-8">
+        <div class="absolute top-0 left-6 transform -translate-y-1/2 bg-gradient-to-r from-pink-500 to-rose-500 px-4 py-1 rounded-full text-white text-sm font-medium shadow-md">
+          <i class="fas fa-filter mr-1"></i> Find & Filter
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+          <!-- Search input -->
+          <div class="relative">
+            <label class="text-xs text-gray-500 dark:text-gray-400 block mb-1 ml-1">Search content</label>
+            <div class="relative">
+              <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+              <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Type to search..." 
+                class="pl-10 pr-4 py-2 w-full border border-pink-300/50 dark:border-pink-500/30 rounded-lg bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm text-gray-800 dark:text-white focus:border-pink-500 focus:ring-1 focus:ring-pink-500 transition-all duration-300"
+              >
+            </div>
+          </div>
+          
+          <!-- Mood filter -->
+          <div>
+            <label class="text-xs text-gray-500 dark:text-gray-400 block mb-1 ml-1">Filter by mood</label>
+            <select 
+              id="filterMood" 
+              class="w-full border border-pink-300/50 dark:border-pink-500/30 rounded-lg px-3 py-2 bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm text-gray-800 dark:text-white focus:border-pink-500 focus:ring-1 focus:ring-pink-500 transition-all duration-300"
+            >
+              <option value="all">All Moods</option>
+              <option value="happy">😊 Happy</option>
+              <option value="sad">💔 Sad</option>
+              <option value="love">❤️ Love</option>
+              <option value="inspiration">✨ Inspiration</option>
+              <option value="nature">🌿 Nature</option>
+              <option value="nostalgia">🕰️ Nostalgia</option>
+            </select>
+          </div>
+          
+          <!-- Author filter -->
+          <div>
+            <label class="text-xs text-gray-500 dark:text-gray-400 block mb-1 ml-1">Filter by author</label>
+            <select 
+              id="filterAuthor" 
+              class="w-full border border-pink-300/50 dark:border-pink-500/30 rounded-lg px-3 py-2 bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm text-gray-800 dark:text-white focus:border-pink-500 focus:ring-1 focus:ring-pink-500 transition-all duration-300"
+            >
+              <option value="all">All Authors</option>
+              <!-- This will be populated dynamically -->
+            </select>
+          </div>
+        </div>
+        
+        <div class="flex justify-between items-center mt-4">
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            <span id="filteredCount">0</span> shayaris found
+          </div>
+          
+          <div class="flex gap-2">
+            <button 
+              id="resetFilters" 
+              class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-sm"
+            >
+              <i class="fas fa-undo-alt mr-1"></i> Reset
+            </button>
+            <button 
+              onclick="exportShayaris()" 
+              class="btn-effect px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg text-sm shadow-sm hover:shadow-md"
+            >
+              <i class="fas fa-download mr-1"></i> Export
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="shayariList" class="space-y-4"></div>
+    </div>
+  </div>
+  
+  <!-- Floating music player -->
+  <div class="floating-music-controls bg-white/20 dark:bg-gray-800/20 backdrop-blur-md p-4 rounded-xl shadow-lg">
+    <audio id="musicPlayer" controls loop class="w-full max-w-xs">
+      <source src="happy.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <div class="mt-2 flex justify-center">
+      <button id="minimizePlayer" class="text-pink-600 dark:text-pink-400 hover:text-pink-700 dark:hover:text-pink-300">
+        <i class="fas fa-chevron-down"></i>
+      </button>
+    </div>
+  </div>
+  
+  <div id="minimizedPlayer" class="hidden fixed bottom-5 right-5 bg-pink-600 text-white p-3 rounded-full shadow-lg cursor-pointer hover:bg-pink-700 transition-all">
+    <i class="fas fa-music"></i>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>
+    const shayariInput = document.getElementById("shayariInput");
+    const moodSelect = document.getElementById("moodSelect");
+    const shayariList = document.getElementById("shayariList");
+    const musicPlayer = document.getElementById("musicPlayer");
+    const musicSelect = document.getElementById("musicSelect");
+    const audioUpload = document.getElementById("audioUpload");
+
+    // Initialize particles.js
+    document.addEventListener('DOMContentLoaded', () => {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 50, density: { enable: true, value_area: 800 } },
+          color: { value: '#ff66b3' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.5, random: true },
+          size: { value: 3, random: true },
+          line_linked: { enable: true, distance: 150, color: '#ff66b3', opacity: 0.4, width: 1 },
+          move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: { enable: true, mode: 'repulse' },
+            onclick: { enable: true, mode: 'push' }
+          }
+        }
+      });
+    });
+
+    function loadShayaris() {
+      const saved = JSON.parse(localStorage.getItem("shayaris")) || [];
+      if (saved.length === 0) {
+        shayariList.innerHTML = `
+          <div class="text-center py-10 text-gray-500 dark:text-gray-400 animate__animated animate__fadeIn">
+            <i class="fas fa-feather-alt text-5xl mb-4"></i>
+            <p>Your shayari collection is empty. Add your first shayari to get started.</p>
+          </div>
+        `;
+      } else {
+        // Sort by timestamp descending (newest first)
+        saved.sort((a, b) => b.timestamp - a.timestamp);
+        saved.forEach(({ text, mood, timestamp, id, likes, author }) => renderShayari(text, mood, null, timestamp, id, author));
+      }
+      
+      // Initialize character counter
+      updateCharCount();
+      shayariInput.addEventListener('input', updateCharCount);
+      
+      // Initialize search and filter listeners
+      document.getElementById('searchInput').addEventListener('input', filterShayaris);
+      document.getElementById('filterMood').addEventListener('change', filterShayaris);
+      
+      // Load last used author name if available
+      const lastAuthor = localStorage.getItem("lastAuthor");
+      if (lastAuthor && localStorage.getItem("rememberAuthor") === "true") {
+        document.getElementById("authorInput").value = lastAuthor;
+      }
+      
+      // Set up theme toggle
+      setupThemeToggle();
+      
+      // Set up music player controls
+      setupMusicControls();
+      
+      // Set up settings panel
+      setupSettings();
+      
+      // Update author filter options
+      updateAuthorFilter();
+      
+      // Set up file uploads
+      setupFileUploads();
+    }
+
+    function updateCharCount() {
+      const count = shayariInput.value.length;
+      const maxLength = 500;
+      const remaining = maxLength - count;
+      const countEl = document.getElementById('characterCount');
+      countEl.textContent = `${count}/${maxLength}`;
+      
+      if (remaining < 50) {
+        countEl.classList.add('text-red-500');
+        countEl.classList.remove('text-gray-500', 'text-gray-400');
+      } else {
+        countEl.classList.add('text-gray-500', 'dark:text-gray-400');
+        countEl.classList.remove('text-red-500');
+      }
+      
+      // Limit the text to maxLength
+      if (count > maxLength) {
+        shayariInput.value = shayariInput.value.substring(0, maxLength);
+      }
+    }
+    
+    function setupThemeToggle() {
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      
+      // Check for saved theme preference or use system preference
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+      
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+          themeIcon.classList.remove('fa-moon');
+          themeIcon.classList.add('fa-sun');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          themeIcon.classList.remove('fa-sun');
+          themeIcon.classList.add('fa-moon');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    }
+    
+    function setupMusicControls() {
+      const floatingControls = document.querySelector('.floating-music-controls');
+      const minimizedPlayer = document.getElementById('minimizedPlayer');
+      const minimizeBtn = document.getElementById('minimizePlayer');
+      
+      minimizeBtn.addEventListener('click', () => {
+        floatingControls.classList.add('hidden');
+        minimizedPlayer.classList.remove('hidden');
+      });
+      
+      minimizedPlayer.addEventListener('click', () => {
+        minimizedPlayer.classList.add('hidden');
+        floatingControls.classList.remove('hidden');
+      });
+    }
+
+    function setupSettings() {
+      // Create settings modal if it doesn't exist
+      if (!document.getElementById('settingsModal')) {
+        const modal = document.createElement('div');
+        modal.id = 'settingsModal';
+        modal.className = 'fixed inset-0 bg-black/50 dark:bg-black/70 z-50 flex items-center justify-center hidden animate__animated animate__fadeIn backdrop-blur-sm';
+        modal.innerHTML = `
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 max-w-md w-full mx-4 animate__animated animate__zoomIn">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-bold text-gray-800 dark:text-white">Settings</h3>
+              <button id="closeSettings" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            
+            <div class="divide-y divide-gray-200 dark:divide-gray-700">
+              <!-- Author Settings -->
+              <div class="py-4">
+                <h4 class="font-medium text-gray-800 dark:text-white mb-2">Author Preferences</h4>
+                <div class="flex items-center mt-2">
+                  <input type="checkbox" id="rememberAuthor" class="rounded text-pink-500 mr-2">
+                  <label for="rememberAuthor" class="text-gray-700 dark:text-gray-300">Remember my author name</label>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">When enabled, your author name will be saved for future shayaris</p>
+              </div>
+              
+              <!-- Display Settings -->
+              <div class="py-4">
+                <h4 class="font-medium text-gray-800 dark:text-white mb-2">Display</h4>
+                <div class="flex items-center mt-2">
+                  <input type="checkbox" id="enableAnimations" class="rounded text-pink-500 mr-2" checked>
+                  <label for="enableAnimations" class="text-gray-700 dark:text-gray-300">Enable animations</label>
+                </div>
+                <div class="mt-4">
+                  <label for="sortOrder" class="block text-gray-700 dark:text-gray-300 mb-1">Sort shayaris by:</label>
+                  <select id="sortOrder" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                    <option value="likes">Most liked</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Data Management -->
+              <div class="py-4">
+                <h4 class="font-medium text-gray-800 dark:text-white mb-2">Data Management</h4>
+                <div class="space-y-2">
+                  <button id="exportAllData" class="w-full flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-3 rounded-lg transition-colors">
+                    <i class="fas fa-download"></i> Export all data
+                  </button>
+                  <button id="importData" class="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-2 px-3 rounded-lg transition-colors">
+                    <i class="fas fa-upload"></i> Import data
+                  </button>
+                  <button id="clearAllData" class="w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded-lg transition-colors">
+                    <i class="fas fa-trash-alt"></i> Clear all data
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+        
+        // Setup event listeners for the settings modal
+        document.getElementById('settingsBtn').addEventListener('click', () => {
+          document.getElementById('settingsModal').classList.remove('hidden');
+        });
+        
+        document.getElementById('closeSettings').addEventListener('click', () => {
+          document.getElementById('settingsModal').classList.add('hidden');
+        });
+        
+        // Remember author setting
+        const rememberAuthorCheckbox = document.getElementById('rememberAuthor');
+        rememberAuthorCheckbox.checked = localStorage.getItem('rememberAuthor') === 'true';
+        
+        rememberAuthorCheckbox.addEventListener('change', () => {
+          localStorage.setItem('rememberAuthor', rememberAuthorCheckbox.checked);
+        });
+        
+        // Animation toggle
+        const enableAnimationsCheckbox = document.getElementById('enableAnimations');
+        enableAnimationsCheckbox.checked = localStorage.getItem('enableAnimations') !== 'false';
+        
+        enableAnimationsCheckbox.addEventListener('change', () => {
+          localStorage.setItem('enableAnimations', enableAnimationsCheckbox.checked);
+          
+          if (!enableAnimationsCheckbox.checked) {
+            document.body.classList.add('disable-animations');
+          } else {
+            document.body.classList.remove('disable-animations');
+          }
+        });
+        
+        // Sort order
+        const sortOrderSelect = document.getElementById('sortOrder');
+        sortOrderSelect.value = localStorage.getItem('sortOrder') || 'newest';
+        
+        sortOrderSelect.addEventListener('change', () => {
+          localStorage.setItem('sortOrder', sortOrderSelect.value);
+          // Resort and redisplay shayaris
+          sortShayaris(sortOrderSelect.value);
+        });
+        
+        // Data management buttons
+        document.getElementById('exportAllData').addEventListener('click', exportAllData);
+        document.getElementById('importData').addEventListener('click', importData);
+        document.getElementById('clearAllData').addEventListener('click', clearAllData);
+      }
+    }
+    
+    function updateAuthorFilter() {
+      const authorSelect = document.getElementById('filterAuthor');
+      if (!authorSelect) return;
+      
+      // Clear existing options except the first one
+      while (authorSelect.options.length > 1) {
+        authorSelect.remove(1);
+      }
+      
+      // Get all authors from shayaris
+      const shayaris = JSON.parse(localStorage.getItem("shayaris")) || [];
+      const authors = new Set();
+      
+      shayaris.forEach(shayari => {
+        const author = shayari.author || 'Anonymous';
+        authors.add(author);
+      });
+      
+      // Add author options
+      authors.forEach(author => {
+        const option = document.createElement('option');
+        option.value = author;
+        option.textContent = author;
+        authorSelect.appendChild(option);
+      });
+    }
+    
+    function filterShayaris() {
+      const searchText = document.getElementById('searchInput').value.toLowerCase();
+      const moodFilter = document.getElementById('filterMood').value;
+      const authorFilter = document.getElementById('filterAuthor').value;
+      
+      const cards = shayariList.querySelectorAll('.shayari-card');
+      let visibleCount = 0;
+      
+      cards.forEach(card => {
+        const text = card.dataset.text.toLowerCase();
+        const mood = card.dataset.mood;
+        const author = card.dataset.author || 'Anonymous';
+        
+        const matchesSearch = text.includes(searchText);
+        const matchesMood = moodFilter === 'all' || mood === moodFilter;
+        const matchesAuthor = authorFilter === 'all' || author === authorFilter;
+        
+        if (matchesSearch && matchesMood && matchesAuthor) {
+          card.classList.remove('hidden');
+          visibleCount++;
+          
+          // Add highlight to search matches if search text isn't empty
+          if (searchText) {
+            const contentP = card.querySelector('.shayari-content p');
+            const originalText = card.dataset.text;
+            
+            // Replace with highlighted text
+            const regex = new RegExp(`(${searchText})`, 'gi');
+            contentP.innerHTML = originalText.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-700/70 px-1 rounded">$1</mark>');
+          } else {
+            // Reset to original text without highlighting
+            const contentP = card.querySelector('.shayari-content p');
+            contentP.textContent = card.dataset.text;
+          }
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      
+      // Update count
+      document.getElementById('filteredCount').textContent = visibleCount;
+      
+      // Show "no results" message if no matches
+      let noResultsMsg = document.getElementById('noResultsMsg');
+      
+      if (visibleCount === 0 && cards.length > 0) {
+        if (!noResultsMsg) {
+          noResultsMsg = document.createElement('div');
+          noResultsMsg.id = 'noResultsMsg';
+          noResultsMsg.className = 'text-center py-16 text-gray-500 dark:text-gray-400 animate__animated animate__fadeIn bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-700';
+          noResultsMsg.innerHTML = `
+            <i class="fas fa-search text-5xl mb-4 opacity-50"></i>
+            <p class="text-xl font-medium mb-2">No matching shayaris found</p>
+            <p class="text-sm">Try adjusting your filters or search query</p>
+          `;
+          shayariList.appendChild(noResultsMsg);
+        }
+      } else if (noResultsMsg) {
+        noResultsMsg.remove();
+      }
+    }
+    
+    // Add event listener for reset filters
+    document.addEventListener('DOMContentLoaded', () => {
+      const resetBtn = document.getElementById('resetFilters');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          document.getElementById('searchInput').value = '';
+          document.getElementById('filterMood').value = 'all';
+          document.getElementById('filterAuthor').value = 'all';
+          filterShayaris();
+        });
+      }
+    });
+    
+    function sortShayaris(sortBy) {
+      const shayaris = JSON.parse(localStorage.getItem('shayaris')) || [];
+      
+      switch(sortBy) {
+        case 'newest':
+          shayaris.sort((a, b) => b.timestamp - a.timestamp);
+          break;
+        case 'oldest':
+          shayaris.sort((a, b) => a.timestamp - b.timestamp);
+          break;
+        case 'likes':
+          shayaris.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+          break;
+      }
+      
+      // Clear and redisplay
+      shayariList.innerHTML = '';
+      shayaris.forEach(({ text, mood, timestamp, id, likes, author }) => 
+        renderShayari(text, mood, null, timestamp, id, author));
+    }
+    
+    function exportAllData() {
+      const allData = {
+        shayaris: JSON.parse(localStorage.getItem('shayaris')) || [],
+        settings: {
+          theme: localStorage.getItem('theme'),
+          rememberAuthor: localStorage.getItem('rememberAuthor'),
+          enableAnimations: localStorage.getItem('enableAnimations'),
+          sortOrder: localStorage.getItem('sortOrder'),
+          lastAuthor: localStorage.getItem('lastAuthor')
+        },
+        exportDate: new Date().toISOString()
+      };
+      
+      const dataStr = JSON.stringify(allData, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'MereJazbaat_Backup_' + new Date().toISOString().split('T')[0] + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showNotification("All data exported successfully!", "success");
+    }
+    
+    function importData() {
+      // Create an invisible file input
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = 'application/json';
+      fileInput.style.display = 'none';
+      document.body.appendChild(fileInput);
+      
+      fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const data = JSON.parse(e.target.result);
+            
+            // Validate the data has the expected format
+            if (!data.shayaris || !Array.isArray(data.shayaris)) {
+              throw new Error("Invalid data format");
+            }
+            
+            // Save the imported shayaris
+            localStorage.setItem('shayaris', JSON.stringify(data.shayaris));
+            
+            // Import settings if available
+            if (data.settings) {
+              if (data.settings.theme) localStorage.setItem('theme', data.settings.theme);
+              if (data.settings.rememberAuthor) localStorage.setItem('rememberAuthor', data.settings.rememberAuthor);
+              if (data.settings.enableAnimations) localStorage.setItem('enableAnimations', data.settings.enableAnimations);
+              if (data.settings.sortOrder) localStorage.setItem('sortOrder', data.settings.sortOrder);
+              if (data.settings.lastAuthor) localStorage.setItem('lastAuthor', data.settings.lastAuthor);
+            }
+            
+            // Reload the shayaris
+            shayariList.innerHTML = '';
+            loadShayaris();
+            
+            showNotification(`Imported ${data.shayaris.length} shayaris successfully!`, "success");
+          } catch (error) {
+            showNotification("Error importing data: Invalid file format", "error");
+          }
+        };
+        reader.readAsText(file);
+        
+        // Remove the file input
+        document.body.removeChild(fileInput);
+      });
+      
+      fileInput.click();
+    }
+    
+    function clearAllData() {
+      if (confirm('Are you sure you want to delete all your shayaris and settings? This cannot be undone!')) {
+        localStorage.removeItem('shayaris');
+        // Don't clear theme preference
+        const theme = localStorage.getItem('theme');
+        localStorage.clear();
+        if (theme) localStorage.setItem('theme', theme);
+        
+        shayariList.innerHTML = `
+          <div class="text-center py-10 text-gray-500 dark:text-gray-400 animate__animated animate__fadeIn">
+            <i class="fas fa-feather-alt text-5xl mb-4"></i>
+            <p>Your shayari collection is empty. Add your first shayari to get started.</p>
+          </div>
+        `;
+        
+        showNotification("All data has been cleared", "info");
+      }
+    }
+
+    function addShayari() {
+      const text = shayariInput.value.trim();
+      const mood = moodSelect.value;
+      const author = document.getElementById("authorInput").value.trim() || null;
+      
+      if (text === "") {
+        showNotification("Please write a shayari first 😊", "warning");
+        return;
+      }
+      
+      const timestamp = Date.now();
+      const id = 'shayari_' + timestamp;
+      
+      // Get image if uploaded
+      const imagePreview = document.getElementById('imagePreview');
+      const imageUrl = imagePreview && !imagePreview.classList.contains('hidden') ? imagePreview.src : null;
+      
+      // Add with animation
+      document.getElementById('shayariInput').classList.add('animate__animated', 'animate__bounceOutUp');
+      setTimeout(() => {
+        renderShayari(text, mood, null, timestamp, id, author, imageUrl);
+        saveShayari(text, mood, timestamp, id, author, imageUrl);
+        
+        shayariInput.value = "";
+        // Clear author field if "remember author" is not enabled
+        if (!localStorage.getItem("rememberAuthor")) {
+          document.getElementById("authorInput").value = "";
+        }
+        // Reset image preview
+        if (imagePreview) {
+          imagePreview.src = '';
+          document.getElementById('imagePreviewContainer').classList.add('hidden');
+        }
+        updateCharCount();
+        setMoodMusic(mood);
+        
+        // Save author name in local storage for future use
+        if (author) {
+          localStorage.setItem("lastAuthor", author);
+        }
+        
+        // Clear "empty" message if it exists
+        const emptyMessage = shayariList.querySelector('.text-center');
+        if (emptyMessage) {
+          emptyMessage.remove();
+        }
+        
+        // Reset animation
+        document.getElementById('shayariInput').classList.remove('animate__animated', 'animate__bounceOutUp');
+        
+        showNotification("Shayari added successfully! ✨", "success");
+      }, 300);
+    }
+
+    function showNotification(message, type = 'info') {
+      // Create notification element
+      const notification = document.createElement('div');
+      
+      // Set classes based on notification type
+      let bgColor = 'bg-blue-500';
+      let icon = 'fa-info-circle';
+      
+      if (type === 'success') {
+        bgColor = 'bg-green-500';
+        icon = 'fa-check-circle';
+      } else if (type === 'warning') {
+        bgColor = 'bg-yellow-500';
+        icon = 'fa-exclamation-triangle';
+      } else if (type === 'error') {
+        bgColor = 'bg-red-500';
+        icon = 'fa-times-circle';
+      }
+      
+      notification.className = `fixed top-4 right-4 ${bgColor} text-white px-4 py-2 rounded-lg shadow-lg z-50 animate__animated animate__fadeInRight flex items-center`;
+      notification.innerHTML = `
+        <i class="fas ${icon} mr-2"></i>
+        <span>${message}</span>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Auto dismiss after 3 seconds
+      setTimeout(() => {
+        notification.classList.replace('animate__fadeInRight', 'animate__fadeOutRight');
+        setTimeout(() => notification.remove(), 500);
+      }, 3000);
+    }
+
+    function renderShayari(text, mood, index = null, timestamp = Date.now(), id = null, author = null, imageUrl = null, audioUrl = null) {
+      if (!id) id = 'shayari_' + timestamp;
+      
+      const card = document.createElement('div');
+      card.id = id;
+      card.dataset.mood = mood;
+      card.dataset.timestamp = timestamp;
+      card.dataset.text = text;
+      card.dataset.author = author || '';
+      if (imageUrl) card.dataset.imageUrl = imageUrl;
+      if (audioUrl) card.dataset.audioUrl = audioUrl;
+      card.dataset.author = author || '';
+      
+      const moodInfo = {
+        happy: { 
+          color: "bg-yellow-100 dark:bg-yellow-900/30", 
+          gradient: "from-yellow-400 to-amber-500", 
+          gradientDark: "from-yellow-500/20 to-amber-600/20",
+          icon: "fa-smile", 
+          label: "Happy" 
+        },
+        sad: { 
+          color: "bg-blue-100 dark:bg-blue-900/30", 
+          gradient: "from-blue-400 to-indigo-500", 
+          gradientDark: "from-blue-500/20 to-indigo-600/20",
+          icon: "fa-sad-tear", 
+          label: "Sad" 
+        },
+        love: { 
+          color: "bg-red-100 dark:bg-red-900/30", 
+          gradient: "from-red-400 to-rose-500", 
+          gradientDark: "from-red-500/20 to-rose-600/20",
+          icon: "fa-heart", 
+          label: "Love" 
+        },
+        inspiration: { 
+          color: "bg-purple-100 dark:bg-purple-900/30", 
+          gradient: "from-purple-400 to-fuchsia-500", 
+          gradientDark: "from-purple-500/20 to-fuchsia-600/20",
+          icon: "fa-lightbulb", 
+          label: "Inspiration" 
+        },
+        nature: { 
+          color: "bg-green-100 dark:bg-green-900/30", 
+          gradient: "from-green-400 to-emerald-500", 
+          gradientDark: "from-green-500/20 to-emerald-600/20",
+          icon: "fa-leaf", 
+          label: "Nature" 
+        },
+        nostalgia: { 
+          color: "bg-amber-100 dark:bg-amber-900/30", 
+          gradient: "from-amber-400 to-orange-500", 
+          gradientDark: "from-amber-500/20 to-orange-600/20",
+          icon: "fa-clock", 
+          label: "Nostalgia" 
+        }
+      }[mood] || { 
+        color: "bg-gray-100 dark:bg-gray-700", 
+        gradient: "from-gray-400 to-slate-500",
+        gradientDark: "from-gray-600/20 to-slate-700/20", 
+        icon: "fa-feather", 
+        label: "Other" 
+      };
+      
+      const date = new Date(timestamp);
+      const formattedDate = date.toLocaleDateString('en-US', { 
+        day: 'numeric', 
+        month: 'short', 
+        year: 'numeric' 
+      });
+
+      // Generate a decorative pattern based on mood for card background
+      const patternClass = `mood-bg-${mood}`;
+      
+      card.className = `card-flip shayari-card relative overflow-hidden p-0 rounded-2xl shadow-lg text-gray-800 dark:text-gray-100 entry-animation border border-white/20 dark:border-gray-700/50`;
+      card.innerHTML = `
+        <div class="card-inner">
+          <!-- Card Background with Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-br ${moodInfo.gradientDark} opacity-30"></div>
+          
+          <!-- Card Content -->
+          <div class="relative z-10 p-6 backdrop-blur-sm">
+            <!-- Top section with mood and date -->
+            <div class="flex flex-wrap justify-between items-start mb-4 gap-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${moodInfo.gradient} text-white shadow-sm">
+                  <i class="fas ${moodInfo.icon} mr-1"></i> ${moodInfo.label}
+                </span>
+                <span class="text-xs text-gray-500 dark:text-gray-400">${formattedDate}</span>
+              </div>
+              
+              <!-- Action buttons -->
+              <div class="flex space-x-1">
+                <button onclick="copyShayari(this)" class="p-1.5 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 hover:scale-110 shadow-sm" title="Copy">
+                  <i class="fas fa-copy text-sm"></i>
+                </button>
+                <button onclick="shareShayari(this)" class="p-1.5 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 hover:scale-110 shadow-sm" title="Share">
+                  <i class="fas fa-share-alt text-sm"></i>
+                </button>
+                <button onclick="editShayari(this)" class="p-1.5 rounded-full bg-white/80 dark:bg-gray-800/80 text-blue-500 dark:text-blue-400 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 hover:scale-110 shadow-sm" title="Edit">
+                  <i class="fas fa-edit text-sm"></i>
+                </button>
+                <button onclick="deleteShayari(this)" class="p-1.5 rounded-full bg-white/80 dark:bg-gray-800/80 text-red-500 dark:text-red-400 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 hover:scale-110 shadow-sm" title="Delete">
+                  <i class="fas fa-trash-alt text-sm"></i>
+                </button>
+              </div>
+            </div>
+            
+            ${imageUrl ? `
+            <!-- Shayari Image -->
+            <div class="mb-4 overflow-hidden rounded-lg shadow-md max-h-64 flex justify-center bg-black/10 dark:bg-white/5">
+              <img src="${imageUrl}" alt="Shayari Image" class="object-contain max-h-64 w-full transition-transform duration-500 hover:scale-105">
+            </div>
+            ` : ''}
+            
+            <!-- Quote decoration -->
+            <div class="relative">
+              <i class="fas fa-quote-left text-4xl absolute -top-2 -left-1 text-gray-200 dark:text-gray-700 opacity-50"></i>
+              
+              <!-- Shayari content -->
+              <div class="shayari-content pt-3 pb-2 px-4">
+                <p class="shayari-text whitespace-pre-wrap text-xl leading-relaxed">${text}</p>
+              </div>
+              
+              <i class="fas fa-quote-right text-4xl absolute -bottom-2 -right-1 text-gray-200 dark:text-gray-700 opacity-50"></i>
+            </div>
+            
+            ${audioUrl ? `
+            <!-- Shayari Audio -->
+            <div class="mt-4 p-2 rounded-lg bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm">
+              <audio controls class="w-full h-8" data-shayari-audio>
+                <source src="${audioUrl}" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            ` : ''}
+            
+            <!-- Footer with author and actions -->
+            <div class="mt-5 pt-3 border-t border-gray-200 dark:border-gray-700/50 flex flex-wrap justify-between items-center gap-2">
+              <!-- Author section -->
+              <div class="author-tag inline-flex items-center">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-r ${moodInfo.gradient} flex items-center justify-center text-white shadow-sm mr-2">
+                  <i class="fas fa-feather-alt text-xs"></i>
+                </div>
+                <div>
+                  <span class="text-xs text-gray-500 dark:text-gray-400">Author</span>
+                  <p class="font-medium text-sm">${author || 'Anonymous'}</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-3">
+                <!-- Like button -->
+                <button onclick="likeShayari(this)" class="flex items-center space-x-1 text-gray-500 dark:text-gray-400 hover:text-pink-500 dark:hover:text-pink-400 transition-colors p-1">
+                  <i class="far fa-heart"></i>
+                  <span class="like-count text-sm font-medium">0</span>
+                </button>
+                
+                <!-- Audio upload button -->
+                <button onclick="uploadShayariAudio(this)" class="p-2 rounded-full bg-white/80 dark:bg-gray-800/80 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 hover:scale-105 shadow-sm" title="Upload audio for this shayari">
+                  <i class="fas fa-music text-xs"></i>
+                </button>
+                
+                <!-- Play matching music button -->
+                <button onclick="playMoodMusic('${mood}')" class="p-2 rounded-full bg-gradient-to-r ${moodInfo.gradient} text-white shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105" title="Play matching music">
+                  <i class="fas fa-play text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (index !== null) {
+        shayariList.children[index].replaceWith(card);
+      } else {
+        shayariList.prepend(card);
+      }
+      
+      // Apply entry animation with a slight delay
+      setTimeout(() => card.classList.add('opacity-100'), 50);
+    }
+
+    function saveShayari(text, mood, timestamp = Date.now(), id = null, author = null, imageUrl = null, audioUrl = null) {
+      if (!id) id = 'shayari_' + timestamp;
+      
+      const saved = JSON.parse(localStorage.getItem("shayaris")) || [];
+      saved.push({ id, text, mood, timestamp, likes: 0, author, imageUrl, audioUrl });
+      localStorage.setItem("shayaris", JSON.stringify(saved));
+    }
+
+    function editShayari(button) {
+      const card = button.closest(".shayari-card");
+      const text = card.querySelector(".shayari-content p").innerText;
+      const mood = card.dataset.mood;
+      const id = card.id;
+      const timestamp = parseInt(card.dataset.timestamp);
+      const author = card.dataset.author || '';
+      const imageUrl = card.dataset.imageUrl || null;
+      const audioUrl = card.dataset.audioUrl || null;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      shayariInput.classList.add('animate-pulse');
+      setTimeout(() => shayariInput.classList.remove('animate-pulse'), 2000);
+      shayariInput.value = text;
+      moodSelect.value = mood;
+      document.getElementById("authorInput").value = author;
+      updateCharCount();
+      // Set image preview if available
+      const imagePreview = document.getElementById('imagePreview');
+      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+      if (imageUrl) {
+        imagePreview.src = imageUrl;
+        imagePreviewContainer.classList.remove('hidden');
+      } else {
+        imagePreview.src = '';
+        imagePreviewContainer.classList.add('hidden');
+      }
+      sessionStorage.setItem('editing', JSON.stringify({ id, timestamp, imageUrl, audioUrl }));
+      const addButton = document.querySelector('button[onclick="addShayari()"]');
+      addButton.innerHTML = '<i class="fas fa-save"></i><span>Update Shayari</span>';
+      addButton.onclick = function() {
+        updateShayari();
+      };
+    }
+
+    function updateShayari() {
+      const text = shayariInput.value.trim();
+      const mood = moodSelect.value;
+      const author = document.getElementById("authorInput").value.trim() || null;
+      const imagePreview = document.getElementById('imagePreview');
+      const imageUrl = imagePreview && !imagePreview.classList.contains('hidden') ? imagePreview.src : null;
+      if (text === "") {
+        showNotification("Shayari cannot be empty", "warning");
+        return;
+      }
+      const editingData = JSON.parse(sessionStorage.getItem('editing'));
+      if (!editingData) return;
+      const { id, timestamp, audioUrl } = editingData;
+      const card = document.getElementById(id);
+      if (card) {
+        const index = Array.from(shayariList.children).indexOf(card);
+        renderShayari(text, mood, index, timestamp, id, author, imageUrl, audioUrl);
+      }
+      const saved = JSON.parse(localStorage.getItem("shayaris")) || [];
+      const itemIndex = saved.findIndex(item => item.id === id || item.timestamp === timestamp);
+      if (itemIndex !== -1) {
+        saved[itemIndex].text = text;
+        saved[itemIndex].mood = mood;
+        saved[itemIndex].author = author;
+        saved[itemIndex].imageUrl = imageUrl;
+        localStorage.setItem("shayaris", JSON.stringify(saved));
+      }
+      shayariInput.value = "";
+      updateCharCount();
+      document.getElementById("authorInput").value = "";
+      if (imagePreview) {
+        imagePreview.src = '';
+        document.getElementById('imagePreviewContainer').classList.add('hidden');
+      }
+      const addButton = document.querySelector('button[onclick="updateShayari()"]');
+      addButton.innerHTML = '<i class="fas fa-heart"></i><span>Add Shayari</span>';
+      addButton.onclick = addShayari;
+      sessionStorage.removeItem('editing');
+      showNotification("Shayari updated successfully!", "success");
+    }
+
+    function deleteShayari(button, updateStorage = true) {
+      const card = button.closest(".shayari-card");
+      const id = card.id;
+      
+      // Confirm deletion
+      if (!confirm("Are you sure you want to delete this shayari?")) {
+        return;
+      }
+      
+      // Animate removal
+      card.classList.add('animate__animated', 'animate__fadeOutRight');
+      setTimeout(() => card.remove(), 500);
+      
+      if (updateStorage) {
+        const saved = JSON.parse(localStorage.getItem("shayaris")) || [];
+        const newSaved = saved.filter(item => item.id !== id);
+        localStorage.setItem("shayaris", JSON.stringify(newSaved));
+        
+        showNotification("Shayari deleted", "info");
+        
+        // Show empty message if no more shayaris
+        if (newSaved.length === 0) {
+          setTimeout(() => {
+            shayariList.innerHTML = `
+              <div class="text-center py-10 text-gray-500 dark:text-gray-400 animate__animated animate__fadeIn">
+                <i class="fas fa-feather-alt text-5xl mb-4"></i>
+                <p>Your shayari collection is empty. Add your first shayari to get started.</p>
+              </div>
+            `;
+          }, 600);
+        }
+      }
+    }
+
+    function likeShayari(button) {
+      const card = button.closest(".shayari-card");
+      const id = card.id;
+      const likeIcon = button.querySelector('i');
+      const likeCount = button.querySelector('.like-count');
+      
+      likeIcon.classList.toggle('far');
+      likeIcon.classList.toggle('fas');
+      likeIcon.classList.toggle('text-pink-500');
+      
+      let currentLikes = parseInt(likeCount.textContent);
+      
+      if (likeIcon.classList.contains('fas')) {
+        currentLikes++;
+        button.classList.add('animate__animated', 'animate__heartBeat');
+        setTimeout(() => button.classList.remove('animate__animated', 'animate__heartBeat'), 1000);
+      } else {
+        currentLikes = Math.max(0, currentLikes - 1);
+      }
+      
+      likeCount.textContent = currentLikes;
+      
+      // Update in storage
+      const saved = JSON.parse(localStorage.getItem("shayaris")) || [];
+      const itemIndex = saved.findIndex(item => item.id === id);
+      
+      if (itemIndex !== -1) {
+        saved[itemIndex].likes = currentLikes;
+        localStorage.setItem("shayaris", JSON.stringify(saved));
+      }
+    }
+
+    function copyShayari(button) {
+      const card = button.closest(".shayari-card");
+      const text = card.querySelector(".shayari-content p").innerText;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        showNotification("Shayari copied to clipboard", "success");
+        
+        const icon = button.querySelector('i');
+        icon.classList.replace('fa-copy', 'fa-check');
+        setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 2000);
+      });
+    }
+    
+    function shareShayari(button) {
+      const card = button.closest(".shayari-card");
+      const text = card.querySelector(".shayari-content p").innerText;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: 'Mere Jazbaat - Shayari',
+          text: text
+        }).catch(err => {
+          console.error('Share failed:', err);
+        });
+      } else {
+        copyShayari(button);
+      }
+    }
+    
+    // File upload handling functions
+    function setupFileUploads() {
+      // Setup text file upload
+      const textFileBtn = document.getElementById('uploadTextFileBtn');
+      const textFileInput = document.getElementById('textFileUpload');
+      
+      textFileBtn.addEventListener('click', () => {
+        textFileInput.click();
+      });
+      
+      textFileInput.addEventListener('change', handleTextFileUpload);
+      
+      // Setup Excel file upload
+      const excelFileBtn = document.getElementById('uploadExcelFileBtn');
+      const excelFileInput = document.getElementById('excelFileUpload');
+      
+      excelFileBtn.addEventListener('click', () => {
+        excelFileInput.click();
+      });
+      
+      excelFileInput.addEventListener('change', handleExcelFileUpload);
+      
+      // Setup image upload for shayari
+      const imageUploadBtn = document.getElementById('imageUploadButton');
+      const imageUploadInput = document.getElementById('imageUpload');
+      
+      imageUploadBtn.addEventListener('click', () => {
+        imageUploadInput.click();
+      });
+      
+      imageUploadInput.addEventListener('change', handleImageUpload);
+    }
+    
+    function handleTextFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const content = e.target.result;
+        processTextFile(content);
+      };
+      reader.readAsText(file);
+    }
+    
+    function processTextFile(content) {
+      // Split by new line or by "---" separator
+      let shayaris = [];
+      
+      if (content.includes('---')) {
+        shayaris = content.split('---').map(s => s.trim()).filter(s => s);
+      } else {
+        shayaris = content.split('\n').map(s => s.trim()).filter(s => s);
+      }
+      
+      if (shayaris.length === 0) {
+        showNotification("No shayaris found in the file", "error");
+        return;
+      }
+      
+      let importCount = 0;
+      
+      // Process each shayari
+      shayaris.forEach(shayariText => {
+        if (shayariText.length > 0) {
+          const timestamp = Date.now() + importCount;
+          const id = 'shayari_' + timestamp;
+          const mood = guessMood(shayariText);
+          const author = document.getElementById("authorInput").value.trim() || 'Imported';
+          
+          renderShayari(shayariText, mood, null, timestamp, id, author);
+          saveShayari(shayariText, mood, timestamp, id, author);
+          importCount++;
+        }
+      });
+      
+      showNotification(`Successfully imported ${importCount} shayaris`, "success");
+      
+      // Reset the input to allow selecting the same file again
+      document.getElementById('textFileUpload').value = '';
+    }
+    
+    function handleExcelFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const data = new Uint8Array(e.target.result);
+        processExcelFile(data);
+      };
+      reader.readAsArrayBuffer(file);
+    }
+    
+    function processExcelFile(data) {
+      try {
+        const workbook = XLSX.read(data, { type: 'array' });
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet);
+        
+        if (jsonData.length === 0) {
+          showNotification("No data found in Excel file", "error");
+          return;
+        }
+        
+        let importCount = 0;
+        
+        jsonData.forEach((row, index) => {
+          // Check for required field
+          if (!row.Shayari && !row.shayari && !row.Text && !row.text) {
+            showNotification(`Row ${index + 1} is missing Shayari text`, "warning");
+            return;
+          }
+          
+          const shayariText = row.Shayari || row.shayari || row.Text || row.text;
+          const mood = row.Mood || row.mood || guessMood(shayariText);
+          const author = row.Author || row.author || document.getElementById("authorInput").value.trim() || 'Imported';
+          const imageUrl = row.ImageURL || row['Image URL'] || row.imageUrl || row.imageURL || null;
+          const audioUrl = row.AudioURL || row['Audio URL'] || row.audioUrl || row.audioURL || null;
+          
+          const timestamp = Date.now() + importCount;
+          const id = 'shayari_' + timestamp;
+          
+          renderShayari(shayariText, mood, null, timestamp, id, author, imageUrl, audioUrl);
+          saveShayari(shayariText, mood, timestamp, id, author, imageUrl, audioUrl);
+          importCount++;
+        });
+        
+        showNotification(`Successfully imported ${importCount} shayaris from Excel`, "success");
+      } catch (error) {
+        console.error("Error processing Excel file:", error);
+        showNotification("Error processing Excel file", "error");
+      }
+      
+      // Reset the input to allow selecting the same file again
+      document.getElementById('excelFileUpload').value = '';
+    }
+    
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      // Check file type
+      if (!file.type.match('image.*')) {
+        showNotification("Please select an image file", "error");
+        return;
+      }
+      
+      // Check file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        showNotification("Image too large (max 5MB)", "error");
+        return;
+      }
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+        
+        imagePreview.src = e.target.result;
+        imagePreviewContainer.classList.remove('hidden');
+        
+        showNotification("Image added to shayari", "success");
+      };
+      reader.readAsDataURL(file);
+    }
+    
+    function uploadShayariAudio(button) {
+      const card = button.closest(".shayari-card");
+      const id = card.id;
+      
+      // Create a temporary input element for file selection
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = 'audio/*';
+      fileInput.style.display = 'none';
+      document.body.appendChild(fileInput);
+      
+      fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (!file) {
+          document.body.removeChild(fileInput);
+          return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const audioUrl = e.target.result
+          document.body.removeChild(fileInput);
+          return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const audioUrl = e.target.result;
+          
+          // If there's already an audio element, update it
+          let audioElement = card.querySelector('[data-shayari-audio]');
+          
+          if (!audioElement) {
+            // Create new audio element
+            const audioContainer = document.createElement('div');
+            audioContainer.className = 'mt-4 p-2 rounded-lg bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm';
+            audioContainer.innerHTML = `
+              <audio controls class="w-full h-8" data-shayari-audio>
+                <source src="${audioUrl}" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            `;
+            
+            // Find where to insert the audio (after the shayari content)
+            const shayariContent = card.querySelector('.shayari-content');
+            shayariContent.parentNode.insertBefore(audioContainer, shayariContent.nextSibling);
+            audioElement = audioContainer.querySelector('audio');
+          } else {
+            // Update existing audio
+            audioElement.src = audioUrl;
+          }
+          
+          // Play the audio
+          audioElement.play();
+          
+          // Update in storage
+          updateShayariInStorage(id, { audioUrl });
+          
+          // Update dataset
+          card.dataset.audioUrl = audioUrl;
+          
+          showNotification("Audio added to shayari", "success");
+          document.body.removeChild(fileInput);
+        };
+        reader.readAsDataURL(file);
+      });
+      
+      fileInput.click();
+    }
+    
+    function updateShayariInStorage(id, updates) {
+      const saved = JSON.parse(localStorage.getItem("shayaris")) || [];
+      const index = saved.findIndex(item => item.id === id);
+      
+      if (index !== -1) {
+        // Update the object with all properties from updates
+        saved[index] = { ...saved[index], ...updates };
+        localStorage.setItem("shayaris", JSON.stringify(saved));
+      }
+    }
+    
+    function guessMood(text) {
+      text = text.toLowerCase();
+      
+      // Define keywords for each mood
+      const moodKeywords = {
+        happy: ['happy', 'joy', 'smile', 'laugh', 'खुशी', 'मुस्कान', 'हँसी', 'आनंद', 'खुश'],
+        sad: ['sad', 'sorrow', 'tear', 'pain', 'दर्द', 'आंसू', 'ग़म', 'दुख', 'उदास'],
+        love: ['love', 'heart', 'romantic', 'प्यार', 'प्रेम', 'दिल', 'इश्क', 'मोहब्बत'],
+        inspiration: ['inspire', 'motivation', 'success', 'dream', 'प्रेरणा', 'सफलता', 'सपना'],
+        nature: ['nature', 'flower', 'river', 'mountain', 'प्रकृति', 'फूल', 'नदी', 'पहाड़'],
+        nostalgia: ['memory', 'childhood', 'remember', 'past', 'याद', 'बचपन', 'पुराना', 'यादें', 'अतीत']
+      };
+      
+      // Count keyword matches for each mood
+      const moodCounts = Object.keys(moodKeywords).reduce((counts, mood) => {
+        counts[mood] = moodKeywords[mood].filter(keyword => text.includes(keyword)).length;
+        return counts;
+      }, {});
+      
+      // Find the mood with the most matches
+      let bestMood = 'happy';  // Default mood
+      let maxCount = 0;
+      
+      for (const mood in moodCounts) {
+        if (moodCounts[mood] > maxCount) {
+          maxCount = moodCounts[mood];
+          bestMood = mood;
+        }
+      }
+      
+      return bestMood;
+    }
+  </script>
+</body>
+</html>

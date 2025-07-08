@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.bgColor{ background: linear-gradient(135deg, #FFC1CC, #E1C8FF)}
+
+.gradient-text-container {
+    text-align: center;
+    margin: 2rem;
+  }
+  
+  .gradient-text {
+    font-size: 3rem; /* Adjust text size */
+    font-weight: bold; /* Optional: Make it stand out */
+    background: linear-gradient(120deg,  #EC38BC, #7303C0); /* Gradient background */
+    -webkit-background-clip: text; /* Clips the background to the text */
+    -webkit-text-fill-color: transparent; /* Makes the text itself transparent */
+    display: inline-block; /* Ensures proper rendering */
+  }
