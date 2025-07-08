@@ -20,7 +20,7 @@
                         </div>
                         <div>
                             <p class="font-medium">{{ currentSong.title || 'No song selected' }}</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">{{ currentSong.artist || 'Select a song   to play' }}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">{{ currentSong.artist || 'Select a song to play' }}</p>
                         </div>
                     </div>
                 </div>
@@ -42,12 +42,19 @@
                         class="text-sm text-red-600 dark:text-red-400 mb-2 bg-red-100 dark:bg-red-900/30 p-2 rounded flex items-center justify-between">
                         <span>
                             <i class="fas fa-exclamation-triangle mr-1"></i>
-                            Format error: This audio file cannot be played. Try another song or format.
+                            Audio format issue: Your browser couldn't play this file. This could be due to an
+                            unsupported format or network issue.
                         </span>
-                        <button @click="resetFormatError"
-                            class="text-sm bg-red-200 dark:bg-red-800 px-2 py-1 rounded hover:bg-red-300 dark:hover:bg-red-700">
-                            Try Again
-                        </button>
+                        <div class="flex gap-2">
+                            <button @click="nextSong"
+                                class="text-sm bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded hover:bg-blue-300 dark:hover:bg-blue-700">
+                                Next Song
+                            </button>
+                            <button @click="resetFormatError"
+                                class="text-sm bg-red-200 dark:bg-red-800 px-2 py-1 rounded hover:bg-red-300 dark:hover:bg-red-700">
+                                Try Again
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Progress bar -->
@@ -238,6 +245,7 @@ const {
     formatError,
     supportedFormats,
     setAudioPlayer,
+    setupAudioEvents,
     fetchAvailableSongs,
     togglePlay,
     selectSong,
@@ -303,15 +311,18 @@ const handleUploadSubmit = async () => {
 // Initialize component
 onMounted(() => {
     // Set audio player reference
-    setAudioPlayer(audioPlayerRef.value)
+    setAudioPlayer(audioPlayerRef.value);
+
+    // Set up audio events for the player
+    setupAudioEvents();
 
     // Fetch available songs and play the first one when ready
-    fetchAvailableSongs().then(() => {
-        // Set default song if available
-        if (availableSongs.value.length > 0 && audioPlayerRef.value) {
-            selectSong(availableSongs.value[0])
+    fetchAvailableSongs().then((success) => {
+        // Set default song if available and fetch was successful
+        if (success && availableSongs.value.length > 0 && audioPlayerRef.value) {
+            selectSong(availableSongs.value[0]);
         }
-    })
+    });
 })
 </script>
 

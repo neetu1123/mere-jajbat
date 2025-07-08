@@ -10,10 +10,10 @@
           </NuxtLink>
         </div>
         <div class="flex items-center gap-4">
-          <button @click="$emit('toggle-settings')"
+          <!-- <button @click="$emit('toggle-settings')"
             class="p-2 rounded-full bg-white/20 backdrop-blur-sm shadow hover:bg-white/30 transition-all duration-300">
             <i class="fas fa-cog text-gray-700 dark:text-gray-300"></i>
-          </button>
+          </button> -->
           <ThemeToggle />
         </div>
       </div>
